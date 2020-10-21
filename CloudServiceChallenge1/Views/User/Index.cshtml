@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CloudServiceChallenge1.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>ゲームデータ</h1>
+
+<p>
+    <a asp-action="Create">新しく作る</a>
+</p>
+
+<a class="btn btn-primary" asp-action="Create100Data">Create 100 Data</a>
+<a class="btn btn-danger" asp-action="DeleteAllData">Delete All Data</a>
+<a class="btn btn-outline-danger" asp-action="RemoveRankPoints">Remove RankPoints</a>
+<a class="btn btn-primary" asp-action="SortUserData">Top Ten</a>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ユーザー名
+            </th>
+            <th>
+                ランクポイント
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RankPoints)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">編集</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">詳細</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">削除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<CloudServiceChallenge1.Models.UserModel>
+
+@{
+    ViewData["Title"] = "SortUserData";
+}
+
+<h1>トップ10</h1>
+<div>
+    <a asp-action="Index">リストに戻る</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ユーザー名
+            </th>
+            <th>
+                ランクポイント
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RankPoints)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
